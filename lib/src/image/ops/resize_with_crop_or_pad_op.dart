@@ -1,6 +1,7 @@
 import 'dart:math' show Point;
-import 'package:image/image.dart' show Image, drawPixel;
 import 'dart:math';
+
+import 'package:image/image.dart' show Image, drawPixel;
 import 'package:tflite_flutter_helper/src/image/image_operator.dart';
 import 'package:tflite_flutter_helper/src/image/ops/resize_op.dart';
 import 'package:tflite_flutter_helper/src/image/tensor_image.dart';
@@ -127,9 +128,9 @@ class ResizeWithCropOrPadOp implements ImageOperator {
     // Check crop position input if both provided
     if (_cropLeft != null && _cropTop != null) {
       // Return an error if the crop position is outside of the image
-      if ((_cropLeft! + _targetWidth > w) || (_cropTop! + _targetHeight > h)) {
-        int leftWidth = _cropLeft! + _targetWidth;
-        int bottomHeight = _cropTop! + _targetHeight;
+      if ((_cropLeft + _targetWidth > w) || (_cropTop + _targetHeight > h)) {
+        int leftWidth = _cropLeft + _targetWidth;
+        int bottomHeight = _cropTop + _targetHeight;
         throw ArgumentError(
             "The crop position is outside the image : crop(x:x+cropWidth,y+cropHeight) = ($_cropLeft:$leftWidth, $_cropTop:$bottomHeight) not in imageSize(x,y) = ($w, $h)");
       }
